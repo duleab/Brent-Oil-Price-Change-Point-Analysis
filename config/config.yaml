@@ -1,0 +1,64 @@
+# Brent Oil Price Change Point Analysis Configuration
+
+# Data Configuration
+data:
+  raw_data_path: "data/raw/"
+  processed_data_path: "data/processed/"
+  external_data_path: "data/external/"
+  
+  # Data file names
+  brent_oil_file: "brent_oil_prices.csv"
+  market_events_file: "market_events.csv"
+  
+  # Date range for analysis
+  start_date: "2000-01-01"
+  end_date: "2023-12-31"
+
+# Analysis Parameters
+analysis:
+  # Change point detection
+  changepoint:
+    method: "pelt"  # pelt, binseg, window
+    penalty: 10
+    min_size: 30
+    jump: 1
+  
+  # Bayesian analysis
+  bayesian:
+    n_samples: 2000
+    n_chains: 4
+    target_accept: 0.8
+    random_seed: 42
+  
+  # Statistical tests
+  significance_level: 0.05
+
+# Visualization Settings
+visualization:
+  figure_size: [12, 8]
+  dpi: 300
+  style: "seaborn-v0_8"
+  color_palette: "viridis"
+  
+  # Output formats
+  save_formats: ["png", "svg"]
+  
+# Model Configuration
+models:
+  # Output paths
+  model_save_path: "results/models/"
+  
+  # Model parameters
+  validation_split: 0.2
+  cross_validation_folds: 5
+
+# Logging
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/analysis.log"
+
+# Reproducibility
+reproducibility:
+  random_seed: 42
+  numpy_seed: 42

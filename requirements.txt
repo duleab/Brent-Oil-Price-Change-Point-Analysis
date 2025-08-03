@@ -1,0 +1,35 @@
+# Core Data Science Libraries
+pandas>=1.5.0
+numpy>=1.21.0
+matplotlib>=3.5.0
+seaborn>=0.11.0
+scipy>=1.9.0
+scikit-learn>=1.1.0
+
+# Jupyter and Interactive Computing
+jupyter>=1.0.0
+jupyterlab>=3.4.0
+ipykernel>=6.15.0
+
+# Bayesian Analysis
+pymc>=5.0.0
+arviz>=0.12.0
+
+# Change Point Detection
+ruptures>=1.1.0
+changepoint>=0.2.0
+
+# Time Series Analysis
+statsmodels>=0.13.0
+
+# Data Visualization
+plotly>=5.10.0
+bokeh>=2.4.0
+
+# Development and Testing
+pytest>=7.0.0
+black>=22.0.0
+flake8>=5.0.0
+
+# Documentation
+sphinx>=5.0.0
