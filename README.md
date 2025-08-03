@@ -2,28 +2,30 @@
 
 A comprehensive analysis of Brent crude oil price data to identify structural breaks and change points using statistical and machine learning techniques.
 
-## 📊 Project Overview
+##  Project Overview
 
 This project analyzes historical Brent crude oil prices to detect significant change points that correspond to major market events. Using advanced statistical methods and Bayesian inference, we identify structural breaks in the time series data and correlate them with historical market events.
 
-## 🎯 Objectives
+##  Objectives
 
 - Perform exploratory data analysis on Brent oil price data
 - Implement change point detection algorithms
 - Correlate detected change points with major market events
 - Develop insights into oil market volatility patterns
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 ├── notebooks/
-│   └── Brent_Oil_Price_Change_Point_Analysis.ipynb  # Main analysis notebook
+│   └── Brent_Oil_Price_Change_Point_Analysis.ipynb
+|   └── Bayesian_change_point_detection_using_PyMC3 .ipynb
+  # Main analysis notebook
 ├── src/                                             # Source code modules
 ├── .gitignore                                       # Git ignore rules
 └── README.md                                        # Project documentation
 ```
 
-## 🔧 Technologies Used
+##  Technologies Used
 
 - **Python**: Primary programming language
 - **Pandas**: Data manipulation and analysis
@@ -32,14 +34,14 @@ This project analyzes historical Brent crude oil prices to detect significant ch
 - **Jupyter Notebooks**: Interactive analysis environment
 - **Statistical Libraries**: For change point detection algorithms
 
-## 📈 Key Features
+##  Key Features
 
 - **Exploratory Data Analysis**: Comprehensive statistical analysis of oil price data
 - **Change Point Detection**: Implementation of multiple algorithms to identify structural breaks
 - **Event Correlation**: Mapping detected change points to historical market events
 - **Visualization**: Interactive plots and charts for data insights
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 
@@ -69,7 +71,7 @@ jupyter notebook
    - Navigate to `notebooks/Brent_Oil_Price_Change_Point_Analysis.ipynb`
    - Execute cells sequentially to reproduce the analysis
 
-## 📊 Analysis Workflow
+##  Analysis Workflow
 
 1. **Data Loading & Preprocessing**: Import and clean historical Brent oil price data
 2. **Exploratory Data Analysis**: Statistical summary and visualization
@@ -77,31 +79,20 @@ jupyter notebook
 4. **Event Correlation**: Map change points to historical market events
 5. **Results Interpretation**: Analyze findings and draw insights
 
-## 🔍 Key Findings
+##  Key Findings
 
 - Identification of major structural breaks in oil price data
 - Correlation between detected change points and significant market events
 - Analysis of volatility patterns across different time periods
 - Insights into market behavior during crisis periods
 
-## 📝 Methodology
+##  Methodology
 
 The analysis employs multiple change point detection techniques:
 - Statistical methods for trend analysis
 - Bayesian inference for probabilistic change point detection
 - Time series decomposition for pattern identification
 
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 📧 Contact
-
-For questions or collaboration opportunities, please reach out through GitHub issues.
 
 ---
 
