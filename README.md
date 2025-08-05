@@ -27,18 +27,10 @@ This project analyzes historical Brent crude oil prices to detect significant ch
 │   │   ├── public/             # Static assets
 │   │   ├── package.json        # Frontend dependencies
 │   │   └── vite.config.js      # Vite build configuration
-│   └── README.md               # Dashboard documentation
+│   └── README.md               
 ├── notebooks/
-│   ├── Brent_Oil_Price_Change_Point_Analysis.ipynb
-│   └── Bayesian_change_point_detection_using_PyMC3.ipynb
-├── config/                     # Configuration files
-│   └── config.yaml             # Analysis parameters and settings
-├── Dockerfile                  # Docker container configuration
-├── docker-compose.yml          # Multi-service orchestration
-├── requirements.txt            # Python dependencies
-├── setup.py                    # Automated setup script
-├── .gitignore                  # Git ignore rules
-└── README.md                   # Project documentation
+    ├── Brent_Oil_Price_Change_Point_Analysis.ipynb
+    └── Bayesian_change_point_detection_using_PyMC3.ipynb
 ```
 
 ##  Technologies Used
