@@ -4,7 +4,7 @@ A comprehensive analysis of Brent crude oil price data to identify structural br
 
 ##  Project Overview
 
-This project analyzes historical Brent crude oil prices to detect significant change points that correspond to major market events. Using advanced statistical methods and Bayesian inference, we identify structural breaks in the time series data and correlate them with historical market events. The project includes a modern web dashboard for interactive data exploration and is fully containerized using Docker.
+This project analyzes historical Brent crude oil prices to detect significant change points that correspond to major market events. Using advanced statistical methods and Bayesian inference, I identify structural breaks in the time series data and correlate them with historical market events. The project includes a modern web dashboard for interactive data exploration and is fully containerized using Docker.
 
 ##  Objectives
 
@@ -209,21 +209,6 @@ The analysis employs multiple change point detection techniques:
 - Time series decomposition for pattern identification
 - Cross-validation and model selection techniques
 
-For detailed methodology documentation, see [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md).
-
-##  Testing and Quality Assurance
-
-This project follows software engineering best practices:
-
-- **Unit Testing**: Comprehensive test suite in `tests/` directory
-- **Code Quality**: PEP 8 compliance and type hints
-- **Reproducibility**: Fixed random seeds and version-controlled dependencies
-- **Documentation**: Detailed docstrings and methodology documentation
-
-Run tests with:
-```bash
-python -m pytest tests/
-```
 
 ##  Configuration Management
 
