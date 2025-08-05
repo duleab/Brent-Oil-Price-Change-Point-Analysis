@@ -1,64 +1,355 @@
 # Brent Oil Price Change Point Analysis Configuration
+# This file contains all configuration parameters for the project
+
+# Project Information
+project:
+  name: "Brent Oil Price Change Point Analysis"
+  version: "1.0.0"
+  description: "Bayesian change point detection and statistical modeling of Brent oil price time series"
+  author: "10 Academy Student"
+  created: "2024"
 
 # Data Configuration
 data:
-  raw_data_path: "data/raw/"
-  processed_data_path: "data/processed/"
-  external_data_path: "data/external/"
-  
-  # Data file names
-  brent_oil_file: "brent_oil_prices.csv"
-  market_events_file: "market_events.csv"
-  
-  # Date range for analysis
-  start_date: "2000-01-01"
-  end_date: "2023-12-31"
+  # Raw data settings
+  raw:
+    brent_oil_file: "data/raw/BrentOilPrices.csv"
+    date_column: "Date"
+    price_column: "Price"
+    date_format: "%Y-%m-%d"
+    
+  # Processed data settings
+  processed:
+    output_dir: "data/processed/"
+    cleaned_file: "brent_oil_cleaned.csv"
+    features_file: "brent_oil_features.csv"
+    
+  # External data
+  external:
+    events_file: "data/external/market_events.json"
+    economic_indicators: "data/external/economic_data.csv"
+    
+  # Data validation
+  validation:
+    min_price: 0.1
+    max_price: 1000.0
+    min_date: "1987-01-01"
+    max_date: "2030-12-31"
+    required_columns: ["Date", "Price"]
 
-# Analysis Parameters
-analysis:
-  # Change point detection
-  changepoint:
-    method: "pelt"  # pelt, binseg, window
+# Change Point Detection Configuration
+change_point_detection:
+  # PELT (Pruned Exact Linear Time) settings
+  pelt:
     penalty: 10
     min_size: 30
     jump: 1
-  
-  # Bayesian analysis
+    model: "rbf"
+    
+  # Bayesian Change Point Detection settings
   bayesian:
+    # PyMC model parameters
     n_samples: 2000
+    n_tune: 1000
     n_chains: 4
-    target_accept: 0.8
+    target_accept: 0.95
     random_seed: 42
-  
-  # Statistical tests
-  significance_level: 0.05
+    
+    # Prior distributions
+    priors:
+      tau_prior: "exponential"  # Prior for precision
+      tau_alpha: 1.0
+      mu_prior: "normal"        # Prior for mean
+      mu_mu: 0.0
+      mu_sigma: 10.0
+      
+    # Change point probability threshold
+    probability_threshold: 0.5
+    
+  # CUSUM settings
+  cusum:
+    threshold: 5.0
+    drift: 1.0
+    
+  # Binary Segmentation settings
+  binary_segmentation:
+    max_segments: 10
+    min_segment_length: 50
 
-# Visualization Settings
+# Statistical Analysis Configuration
+statistical_analysis:
+  # Descriptive statistics
+  descriptive:
+    percentiles: [5, 25, 50, 75, 95]
+    rolling_windows: [7, 30, 90, 365]
+    
+  # Volatility analysis
+  volatility:
+    window_sizes: [10, 20, 30, 60]
+    method: "standard_deviation"  # Options: standard_deviation, garch
+    
+  # Trend analysis
+  trend:
+    methods: ["linear", "polynomial", "lowess"]
+    polynomial_degree: 3
+    lowess_frac: 0.1
+    
+  # Correlation analysis
+  correlation:
+    lag_range: [-30, 30]
+    significance_level: 0.05
+
+# Visualization Configuration
 visualization:
-  figure_size: [12, 8]
-  dpi: 300
-  style: "seaborn-v0_8"
-  color_palette: "viridis"
-  
-  # Output formats
-  save_formats: ["png", "svg"]
-  
-# Model Configuration
-models:
-  # Output paths
-  model_save_path: "results/models/"
-  
-  # Model parameters
-  validation_split: 0.2
-  cross_validation_folds: 5
+  # General plot settings
+  general:
+    figure_size: [12, 8]
+    dpi: 300
+    style: "seaborn-v0_8"
+    color_palette: "Set2"
+    font_size: 12
+    
+  # Time series plots
+  time_series:
+    line_width: 1.5
+    marker_size: 3
+    grid: true
+    
+  # Change point visualization
+  change_points:
+    marker_color: "red"
+    marker_size: 8
+    marker_style: "v"
+    line_style: "--"
+    line_width: 2
+    alpha: 0.7
+    
+  # Statistical plots
+  statistics:
+    histogram_bins: 50
+    kde_bandwidth: "scott"
+    confidence_interval: 0.95
+    
+  # Output settings
+  output:
+    format: "png"  # Options: png, pdf, svg
+    save_dir: "results/figures/"
+    prefix: "brent_oil_"
+    timestamp: true
 
-# Logging
+# Dashboard Configuration
+dashboard:
+  # Frontend settings
+  frontend:
+    port: 5173
+    host: "localhost"
+    title: "Brent Oil Price Analysis Dashboard"
+    
+  # Backend API settings
+  backend:
+    port: 5000
+    host: "localhost"
+    debug: true
+    cors_origins: ["http://localhost:5173"]
+    
+  # Data refresh settings
+  data_refresh:
+    auto_refresh: true
+    refresh_interval: 300  # seconds
+    
+  # Chart settings
+  charts:
+    default_date_range: 365  # days
+    max_data_points: 1000
+    animation_duration: 500
+
+# Model Configuration
+modeling:
+  # Training settings
+  training:
+    test_size: 0.2
+    validation_size: 0.1
+    random_state: 42
+    cross_validation_folds: 5
+    
+  # Model parameters
+  models:
+    # ARIMA model
+    arima:
+      max_p: 5
+      max_d: 2
+      max_q: 5
+      seasonal: false
+      
+    # GARCH model
+    garch:
+      p: 1
+      q: 1
+      vol: "GARCH"
+      dist: "normal"
+      
+    # Prophet model
+    prophet:
+      yearly_seasonality: true
+      weekly_seasonality: false
+      daily_seasonality: false
+      changepoint_prior_scale: 0.05
+      
+  # Model evaluation
+  evaluation:
+    metrics: ["mse", "mae", "mape", "rmse"]
+    backtesting_periods: 12
+    
+# Results and Output Configuration
+results:
+  # Output directories
+  directories:
+    figures: "results/figures/"
+    models: "results/models/"
+    reports: "results/reports/"
+    data: "results/data/"
+    
+  # Report settings
+  reports:
+    format: "html"  # Options: html, pdf, markdown
+    include_code: false
+    include_plots: true
+    template: "default"
+    
+  # Model persistence
+  model_persistence:
+    save_models: true
+    model_format: "pickle"  # Options: pickle, joblib
+    versioning: true
+
+# Logging Configuration
 logging:
-  level: "INFO"
+  level: "INFO"  # Options: DEBUG, INFO, WARNING, ERROR, CRITICAL
   format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
   file: "logs/analysis.log"
+  max_file_size: "10MB"
+  backup_count: 5
+  console_output: true
 
-# Reproducibility
-reproducibility:
-  random_seed: 42
-  numpy_seed: 42
+# Performance Configuration
+performance:
+  # Parallel processing
+  parallel:
+    n_jobs: -1  # Use all available cores
+    backend: "loky"
+    
+  # Memory management
+  memory:
+    chunk_size: 10000
+    low_memory: false
+    
+  # Caching
+  caching:
+    enabled: true
+    cache_dir: ".cache/"
+    max_cache_size: "1GB"
+
+# Testing Configuration
+testing:
+  # Test data
+  test_data:
+    synthetic_data_size: 1000
+    noise_level: 0.1
+    change_points: [250, 500, 750]
+    
+  # Test parameters
+  parameters:
+    tolerance: 0.01
+    significance_level: 0.05
+    random_seed: 42
+    
+  # Coverage settings
+  coverage:
+    minimum_coverage: 80
+    exclude_patterns: ["tests/*", "setup.py"]
+
+# Environment Configuration
+environment:
+  # Development settings
+  development:
+    debug: true
+    auto_reload: true
+    profiling: false
+    
+  # Production settings
+  production:
+    debug: false
+    optimize: true
+    compression: true
+    
+  # Dependencies
+  dependencies:
+    python_version: ">=3.8"
+    required_packages:
+      - "pandas>=1.3.0"
+      - "numpy>=1.21.0"
+      - "matplotlib>=3.4.0"
+      - "seaborn>=0.11.0"
+      - "pymc>=4.0.0"
+      - "arviz>=0.11.0"
+      - "ruptures>=1.1.0"
+      - "plotly>=5.0.0"
+      - "flask>=2.0.0"
+      - "flask-cors>=3.0.0"
+
+# Security Configuration
+security:
+  # API security
+  api:
+    rate_limiting: true
+    max_requests_per_minute: 100
+    
+  # Data security
+  data:
+    encrypt_sensitive_data: false
+    backup_encryption: false
+    
+  # Access control
+  access:
+    require_authentication: false
+    allowed_origins: ["localhost"]
+
+# Deployment Configuration
+deployment:
+  # Docker settings
+  docker:
+    base_image: "python:3.9-slim"
+    port_mapping: "5000:5000"
+    volume_mapping: "./data:/app/data"
+    
+  # Cloud deployment
+  cloud:
+    provider: "aws"  # Options: aws, gcp, azure
+    region: "us-east-1"
+    instance_type: "t3.medium"
+    
+  # Monitoring
+  monitoring:
+    health_check_endpoint: "/api/health"
+    metrics_collection: true
+    log_aggregation: true
+
+# Notification Configuration
+notifications:
+  # Email notifications
+  email:
+    enabled: false
+    smtp_server: "smtp.gmail.com"
+    smtp_port: 587
+    
+  # Slack notifications
+  slack:
+    enabled: false
+    webhook_url: ""
+    
+  # Events to notify
+  events:
+    - "analysis_complete"
+    - "error_occurred"
+    - "model_trained"
+    - "change_point_detected"
