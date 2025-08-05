@@ -18,11 +18,6 @@ This project analyzes historical Brent crude oil prices to detect significant ch
 ## Project Structure
 
 ```
-├── data/
-│   ├── raw/                    # Original, unmodified data files
-│   ├── processed/              # Cleaned and preprocessed data
-│   ├── external/               # External reference data
-│   └── README.md               # Data directory documentation
 ├── dashboard/                  # Interactive web dashboard
 │   ├── backend/                # Flask API backend
 │   │   ├── app.py              # Main Flask application
@@ -36,16 +31,6 @@ This project analyzes historical Brent crude oil prices to detect significant ch
 ├── notebooks/
 │   ├── Brent_Oil_Price_Change_Point_Analysis.ipynb
 │   └── Bayesian_change_point_detection_using_PyMC3.ipynb
-├── src/                        # Source code modules
-│   └── README.md               # Code organization guide
-├── results/
-│   ├── figures/                # Generated plots and visualizations
-│   ├── models/                 # Saved model objects and parameters
-│   └── README.md               # Results documentation
-├── tests/                      # Unit tests and integration tests
-│   └── test_example.py         # Example test cases
-├── docs/                       # Project documentation
-│   └── METHODOLOGY.md          # Detailed methodology documentation
 ├── config/                     # Configuration files
 │   └── config.yaml             # Analysis parameters and settings
 ├── Dockerfile                  # Docker container configuration
